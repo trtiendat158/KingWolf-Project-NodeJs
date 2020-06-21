@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>King Wolf</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link href="https://fonts.googleapis.com/css?family=Playfair+Display:300,400,700,800|Open+Sans:300,400,700"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="/public/home-cust/css/bootstrap.css">
+  <link rel="stylesheet" href="/public/home-cust/css/animate.css">
+  <link rel="stylesheet" href="/public/home-cust/css/owl.carousel.min.css">
+
+  <link rel="stylesheet" href="/public/home-cust/css/magnific-popup.css">
+  <link rel="stylesheet" href="/public/home-cust/css/aos.css">
+
+  <link rel="stylesheet" href="/public/home-cust/css/bootstrap-datepicker.css">
+  <link rel="stylesheet" href="/public/home-cust/css/jquery.timepicker.css">
+
+  <link rel="stylesheet" href="/public/home-cust/fonts/ionicons/css/ionicons.min.css">
+  <link rel="stylesheet" href="/public/home-cust/fonts/fontawesome/css/font-awesome.min.css">
+
+  <link rel="stylesheet" href="/public/home-cust/fonts/flaticon/font/flaticon.css">
+
+  <!-- Theme Style -->
+  <link rel="stylesheet" href="/public/home-cust/css/style.css">
+
+</head>
+
+<body class="bg-light">
+
+  <body data-spy="scroll" data-target="#ftco-navbar-spy" data-offset="0">
+    <div class="site-wrap">
+      <nav class="site-menu" id="ftco-navbar-spy">
+        <div class="site-menu-inner" id="ftco-navbar">
+          <ul class="list-unstyled">
+            <%  if (session.customer) {  %>
+            <li>Hello, <b><%=session.customer.name%></b></li>
+            <li>My cart have <b><%= (session.mycart) ? session.mycart.length : 0 %></b> items</li>
+            <%  }  %>  
+            <hr />
+            <li><a href="home">Home</a></li>
+            <%  if (typeof(cats) !== 'undefined') { for (var cat of cats) { %>
+            <li><a href="./listproduct?catID=<%=cat._id%>"><%=cat.name%></a></li>
+            <%  } } %>
+            <%  if (session.customer) {  %>
+            <li><a href="myprofile">My Profile</a></li>
+            <li><a href="myorders">My Order</a></li>
+            <li><a href="mycart">My Cart</a></li>
+            <li><a href="./logout">Logout</a></li>
+            <%  } else {  %>
+            <li><a href="./login">Login</a> | <a href="./signup">Sign-up</a></li>
+            <%  } %>
+          </ul>
+        </div>
+      </nav>
+
+      <header class="site-header">
+        <div class="row align-items-center">
+          <div class="col-5 col-md-3"></div>
+          <div class="col-2 col-md-6 text-center site-logo-wrap">
+            <a href="home">
+              <img src="/public/home-cust/images/logocus.png" alt="" width="155px" height="155px">
+            </a>
+            <div class="input-group mb-3">
+              <form action="./search" method="POST" class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Search" name="txtKeyword"
+                  placeholder="Enter keyword" required oninvalid="this.setCustomValidity('Keyword không để trống')"
+                  oninput="this.setCustomValidity('')" />
+                <div class="input-group-append">
+                  <button class="btn btn-success" type="submit">Go</button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <div class="col-5 col-md-3 text-right menu-burger-wrap">
+            <a href="#" class="site-nav-toggle js-site-nav-toggle"><i></i></a>
+          </div>
+        </div>
+
+      </header> <!-- site-header -->
+
+      <div class="main-wrap " id="section-home">
+
+        <div class="cover_1 overlay bg-light">
+          <div class="img_bg" style="background-image: url(/public/home-cust/images/slider-1.jpg);"
+            data-stellar-background-ratio="0.5">
+            <div class="container">
+              <div class="row align-items-center justify-content-center text-center">
+                <div class="col-md-10" data-aos="fade-up">
+                  <br />
+                  <h4 class="heading mb-5">Welcome to King Wolf !</h4>
+                  <p><a href="#section-menu" class="smoothscroll btn btn-outline-white px-5 py-3">Order now</a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> <!-- .cover_1 -->
+
+        <div class="section" data-aos="fade-up">
+          <div class="container">
+            <div class="row section-heading justify-content-center mb-5">
+              <div class="col-md-8 text-center">
+                <h2 class="heading mb-3">Find your best cake</h2>
+              </div>
+            </div>
+            <div class="row">
+
+              <div class="ftco-46">
+                <div class="ftco-46-row d-flex flex-column flex-lg-row">
+                  <div class="ftco-46-image" style="background-image: url(/public/home-cust/images/img_1.jpg);"></div>
+                  <div class="ftco-46-text ftco-46-arrow-left">
+                    <h4 class="ftco-46-subheading">Cake</h4>
+                    <h3 class="ftco-46-heading">Socola Bery Cake</h3>
+                    <p class="mb-5">A cake with a hint of sweetness from chocolate and a hint of berries, blueberries.
+                    </p>
+                  </div>
+                  <div class="ftco-46-image" style="background-image: url(/public/home-cust/images/img_2.jpg);"></div>
+                </div>
+
+                <div class="ftco-46-row d-flex flex-column flex-lg-row">
+                  <div class="ftco-46-text ftco-46-arrow-right">
+                    <h4 class="ftco-46-subheading">Cookies</h4>
+                    <h3 class="ftco-46-heading">Socola CaCao Cookies</h3>
+                    <p class="mb-5">This cake has a bitter sweet taste between chocolate and cocoa.</p>
+                  </div>
+                  <div class="ftco-46-image" style="background-image: url(/public/home-cust/images/img_3.jpg);"></div>
+                  <div class="ftco-46-text ftco-46-arrow-up">
+                    <h4 class="ftco-46-subheading">Sweet</h4>
+                    <h3 class="ftco-46-heading">Macaroon</h3>
+                    <p class="mb-5">A macaron or French macaroon is a sweet meringue-based confection made with egg
+                      white, icing sugar, granulated sugar, almond meal, and food colouring..</p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div> <!-- .section -->
+
+        <div class="section bg-white" data-aos="fade-up">
+          <div class="container">
+            <div class="row mb-5">
+              <div class="col-md-12 section-heading text-center">
+                <h2 class="heading mb-5">Meet The Chefs</h2>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 pr-md-5 text-center mb-5">
+                <div class="ftco-38">
+                  <div class="ftco-38-img">
+                    <div class="ftco-38-header">
+                      <img src="/public/home-cust/images/chef_1.jpg" alt="Image">
+                      <h3 class="ftco-38-heading">Gordon Ramsay</h3>
+                      <p class="ftco-38-subheading">Master Chef</p>
+                    </div>
+                    <div class="ftco-38-body">
+                      <p>Gordon James Ramsay OBE is a British chef, restaurateur, writer and television personality. He
+                        was born in Johnstone, Scotland, and raised in Stratford-upon-Avon, England. His restaurants
+                        have been awarded 16 Michelin stars in total and currently hold a total of seven.</p>
+                      <p>Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language
+                        ocean. It is a paradisematic country.</p>
+                      <p>
+                        <a href="https://www.facebook.com/gordonramsay" class="p-2"><span
+                            class="fa fa-facebook"></span></a>
+                        <a href="https://twitter.com/GordonRamsay" class="p-2"><span class="fa fa-twitter"></span></a>
+                        <a href="https://www.instagram.com/gordongram/" class="p-2"><span
+                            class="fa fa-instagram"></span></a>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 pl-md-5 text-center mb-5">
+                <div class="ftco-38">
+                  <div class="ftco-38-img">
+                    <div class="ftco-38-header">
+                      <img src="/public/home-cust/images/chef_2.jpg" alt="Image">
+                      <h3 class="ftco-38-heading">Joe Bastianich</h3>
+                      <p class="ftco-38-subheading">Master Chef</p>
+                    </div>
+                    <div class="ftco-38-body">
+                      <p>Joseph Bastianich is an American restaurateur, winemaker, vineyard owner, author, showman,
+                        television personality, guitarist, and musician of Italian descent..</p>
+                      <p>Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language
+                        ocean. It is a paradisematic country.</p>
+                      <p>
+                        <a href="https://www.facebook.com/JoeBastianich/" class="p-2"><span
+                            class="fa fa-facebook"></span></a>
+                        <a href="https://twitter.com/jbastianich" class="p-2"><span class="fa fa-twitter"></span></a>
+                        <a href="https://www.instagram.com/jbastianich/" class="p-2"><span
+                            class="fa fa-instagram"></span></a>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="col-md-4"></div> -->
+            </div>
+          </div>
+        </div> <!-- .section -->
+
+        <div class="section bg-light" id="section-menu" data-aos="fade-up">
+          <div class="container">
+            <div class="row section-heading justify-content-center mb-5">
+              <div class="col-md-8 text-center">
+                <h2 class="heading mb-3">Menu</h2>
+              </div>
+            </div>
+            <div class="row justify-content-center">
+              <div class="col-md-8">
+                <ul class="nav site-tab-nav" id="pills-tab" role="tablist">
+                  <li class="nav-item">
+                    <a class="nav-link active" id="pills-breakfast-tab" data-toggle="pill" href="#pills-breakfast"
+                      role="tab" aria-controls="pills-breakfast" aria-selected="true"> Best-selling Cakes </a>
+                  </li>
+                </ul>
+                <div class="tab-content" id="pills-tabContent">
+
+                  <div class="tab-pane fade show active" id="pills-breakfast" role="tabpanel"
+                    aria-labelledby="pills-breakfast-tab">
+                    <%  for (var prod of newprods) { %>
+                    <div class="d-block d-md-flex menu-food-item">
+
+                      <div class="text order-1 mb-3">
+                        <img src="data:image/jpg;base64,<%=prod.image%>" alt="Image">
+                        <h3><a href="./details?id=<%=prod._id%>"><%=prod.name %></a></h3>
+                        <p>Made by King Wolf.</p>
+                      </div>
+                      <div class="price order-2">
+                        <strong>$<%=prod.price%></strong>
+                      </div>
+                    </div>
+                  </div>
+                  <%  } %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> <!-- .section -->
+
+
+        <footer class="ftco-footer">
+          <div class="container">
+
+            <div class="row">
+              <div class="col-md-4 mb-5">
+                <div class="footer-widget">
+                  <h3 class="mb-4">About Meal</h3>
+                  <p>The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question
+                    Marks and devious Semikoli, but the Little Blind Text didn’t listen. </p>
+
+                  <p><a href="#" class="btn btn-primary btn-outline-primary">Read More</a></p>
+                </div>
+              </div>
+              <div class="col-md-4 mb-5">
+                <div class="footer-widget">
+                  <h3 class="mb-4">Lunch Service</h3>
+                  <p>Booking from 12:00pm &mdash; 1:30pm</p>
+                  <h3 class="mb-4">Dinner Service</h3>
+                  <p>Everyday: <br> Booking from 6:00pm &mdash; 9:00pm</p>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="footer-widget">
+                  <h3 class="mb-4">Follow Along</h3>
+                  <ul class="list-unstyled social">
+                    <li><a href="#"><span class="fa fa-tripadvisor"></span></a></li>
+                    <li><a href="#"><span class="fa fa-twitter"></span></a></li>
+                    <li><a href="#"><span class="fa fa-facebook"></span></a></li>
+                    <li><a href="#"><span class="fa fa-instagram"></span></a></li>
+                  </ul>
+                </div>
+                <div class="footer-widget">
+                  <h3 class="mb-4">Newsletter</h3>
+                  <form action="#" class="ftco-footer-newsletter">
+                    <div class="form-group">
+                      <button class="button"><span class="fa fa-envelope"></span></button>
+                      <input type="email" class="form-control" placeholder="Enter Email">
+                    </div>
+                  </form>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="row pt-5">
+              <div class="col-md-12 text-center">
+                <p>
+                  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                  Copyright &copy;
+                  <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made
+                  with <i class="fa fa-heart text-danger" aria-hidden="true"></i> by <a href="https://colorlib.com"
+                    target="_blank">Colorlib</a>
+                  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                </p>
+              </div>
+            </div>
+          </div>
+        </footer>
+
+      </div>
+
+      <!-- loader -->
+      <div id="loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
+          <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+          <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
+            stroke="#ff7a5c" /></svg></div>
+
+      <script src="/public/home-cust/js/jquery-3.2.1.min.js"></script>
+      <script src="/public/home-cust/js/jquery-migrate-3.0.1.min.js"></script>
+      <script src="/public/home-cust/js/popper.min.js"></script>
+      <script src="/public/home-cust/js/bootstrap.min.js"></script>
+      <script src="/public/home-cust/js/owl.carousel.min.js"></script>
+      <script src="/public/home-cust/js/jquery.waypoints.min.js"></script>
+
+      <script src="/public/home-cust/js/bootstrap-datepicker.js"></script>
+      <script src="/public/home-cust/js/jquery.timepicker.min.js"></script>
+      <script src="/public/home-cust/js/jquery.stellar.min.js"></script>
+
+      <script src="/public/home-cust/js/jquery.easing.1.3.js"></script>
+
+      <script src="/public/home-cust/js/aos.js"></script>
+
+
+      <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+
+      <script src="/public/home-cust/js/main.js"></script>
+  </body>
+
+</html>

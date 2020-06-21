@@ -1,0 +1,25 @@
+.datatable {
+  text-align: center;
+  border-collapse: collapse;
+}
+/* header */
+tr:first-child.datatable {
+  background-color:dodgerblue;
+}
+/* even rows, except header */
+tr:not(:first-child):nth-child(even).datatable {
+  background-color: #f5f5f5;
+}
+/* odd rows, except header */
+tr:not(:first-child):nth-child(odd).datatable {
+  background-color: lightskyblue;
+}
+/* except header */
+tr:not(:first-child):hover.datatable {
+  background-color: #dcfcfc;
+  cursor: pointer;
+}
+th, td {
+  padding: 15px;
+  text-align: left;
+}

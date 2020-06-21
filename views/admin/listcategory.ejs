@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Yoga Studio Template">
+    <meta name="keywords" content="Yoga, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> ADMIN | KingWolf </title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="/public/admin-template/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/public/admin-template/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/public/admin-template/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="/public/admin-template/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="/public/admin-template/css/style.css" type="text/css">
+
+    <link href="/public/css/styles.css" type="text/css" rel="stylesheet" />
+    <script>
+      function details(id, name) {
+        document.getElementById("txtID").value = id;
+        document.getElementById("txtName").value = name;
+        document.getElementById("btnUpdate").style.display = "inline";
+        document.getElementById("btnDelete").style.display = "inline";
+      }
+    </script>
+</head>
+
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+    <div class="col-md-6">
+        <p> Welcom back <b><u><i> <%=session.admin.username%> </i></u></b>  ||  <a href="./logout" > Logout </a></p> 
+      </div>
+    <!-- Header Section Begin -->
+    <header class="header-section">
+        <div class="container">
+            <div class="logo">
+                <a href="./index.html"><img src="/public/admin-template/img/logo.png" alt=""></a>
+            </div>
+            <div class="nav-menu">
+                <nav class="main-menu mobile-menu">
+                    <ul>
+                        <li class="active"><a href="home"> Home </a></li>
+                        <li><a href="#"> Product Management </a>
+                            <ul class="sub-menu">
+                                <li><a href="listcategory"> List of Categories </a></li>
+                                <li><a href="listproduct"> List of Products </a></li>
+                            </ul>
+                            <li><a href="listorder"> Orders </a></li>
+                            <li><a href="listcustomer"> Customers </a></li>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div id="mobile-menu-wrap"></div>
+        </div>
+    </header>
+
+      <br/><br/><br/>
+
+    <section>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-5">
+            <div class="fs-left">
+              <h2> CATEGORY LIST </h2>
+                <table class="datatable" border="1">
+                  <tr class="datatable">
+                    <th>ID</th>
+                    <th>Name</th>
+                  </tr>
+                  <%  for (var item of cats) {  %>
+                  <tr class="datatable" onclick="details('<%=item._id%>', '<%=item.name%>')">
+                    <th><%=item._id%></th>
+                    <td><%=item.name%></td>
+                  </tr>
+                  <%  } %>
+                </table>
+            </div>
+          </div>
+          <div class="col-lg-6 offset-lg-1">
+            <h2>CATEGORY DETAIL</h2>
+              <form method="POST">
+                <table>
+                  <tr>
+                    <td>ID</td>
+                    <td><input type="text" id="txtID" name="txtID" readonly /></td>
+                  </tr>
+                  <tr>
+                    <td>Name</td>
+                    <td><input type="text" id="txtName" name="txtName" required /></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td>
+                      <input type="submit" formaction="./addcategory" value="ADD NEW" />
+                      <input type="submit" formaction="./updatecategory" value="UPDATE" id="btnUpdate" style="display: none" />
+                      <input type="submit" formaction="./deletecategory" value="DELETE" id="btnDelete" style="display: none" onclick="return confirm('ARE YOU SURE?')" />
+                    </td>
+                  </tr>
+                </table>
+              </form>
+          </div>
+      </div>
+  </div>
+    </section>
+
+      <br/><br/><br/><br/>
+    
+    <footer class="footer-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5">
+                    <div class="fs-left">
+                        <div class="logo">
+                            <a href="./index.html">
+                                <img src="/public/admin-template/img/footer-logo.png" alt="">
+                            </a>
+                        </div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo
+                            viverra maecenas accumsan lacus vel facilisis.</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 offset-lg-1">
+                    <form action="#" class="subscribe-form">
+                        <h3>Subscribe to our newsletter</h3>
+                        <input type="email" placeholder="Your e-mail">
+                        <button type="submit">Subscribe</button>
+                    </form>
+                    <div class="social-links">
+                        <a href="#"><i class="fa fa-instagram"></i><span>Instagram</span></a>
+                        <a href="#"><i class="fa fa-pinterest"></i><span>Pinterest</span></a>
+                        <a href="#"><i class="fa fa-facebook"></i><span>Facebook</span></a>
+                        <a href="#"><i class="fa fa-twitter"></i><span>Twitter</span></a>
+                        <a href="#"><i class="fa fa-youtube"></i><span>Youtube</span></a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="copyright-text">
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+
+    <!-- Js Plugins -->
+    <script src="/public/admin-template/js/jquery-3.3.1.min.js"></script>
+    <script src="/public/admin-template/js/bootstrap.min.js"></script>
+    <script src="/public/admin-template/js/jquery.slicknav.js"></script>
+    <script src="/public/admin-template/js/jquery.nice-select.min.js"></script>
+    <script src="/public/admin-template/js/mixitup.min.js"></script>
+    <script src="/public/admin-template/js/main.js"></script>
+</body>
+
+</html>

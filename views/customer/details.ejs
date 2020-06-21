@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title><%=prod.name%> Detail</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:300,400,700,800|Open+Sans:300,400,700" rel="stylesheet">
+
+    <link rel="stylesheet" href="/public/home-cust/css/bootstrap.css">
+    <link rel="stylesheet" href="/public/home-cust/css/animate.css">
+    <link rel="stylesheet" href="/public/home-cust/css/owl.carousel.min.css">
+
+    <link rel="stylesheet" href="/public/home-cust/css/magnific-popup.css">
+    <link rel="stylesheet" href="/public/home-cust/css/aos.css">
+
+    <link rel="stylesheet" href="/public/home-cust/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="/public/home-cust/css/jquery.timepicker.css">
+
+    <link rel="stylesheet" href="/public/home-cust/fonts/ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" href="/public/home-cust/fonts/fontawesome/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="/public/home-cust/fonts/flaticon/font/flaticon.css">
+
+    <!-- Theme Style -->
+    <link rel="stylesheet" href="/public/home-cust/css/style.css">
+  </head>
+  <body class="bg-light">
+
+    <body data-spy="scroll" data-target="#ftco-navbar-spy" data-offset="0">
+    <div class="site-wrap"> 
+      <nav class="site-menu" id="ftco-navbar-spy">
+        <div class="site-menu-inner" id="ftco-navbar">        
+          <ul class="list-unstyled">
+            <%  if (session.customer) {  %>
+              <li>Hello, <b><%=session.customer.name%></b></li>
+              <li>My cart have <b><%= (session.mycart) ? session.mycart.length : 0 %></b> items</li>
+            <%  }  %>
+            <hr/>
+            <li><a href="home">Home</a></li>
+            <%  if (typeof(cats) !== 'undefined') { for (var cat of cats) { %>
+              <li><a href="./listproduct?catID=<%=cat._id%>"><%=cat.name%></a></li>
+            <%  } } %>
+            <%  if (session.customer) {  %>
+            <li><a href="myprofile">My Profile</a></li>
+            <li><a href="myorders">My Order</a></li>
+            <li><a href="mycart">My Cart</a></li>
+            <li><a href="./logout">Logout</a></li>
+            <%  } else {  %>
+              <li><a href="./login">Login</a> | <a href="./signup">Sign-up</a></li>
+            <%  } %>
+          </ul>
+        </div>
+      </nav>
+
+      <header class="site-header">
+        <div class="row align-items-center">
+          <div class="col-5 col-md-3"></div>
+          <div class="col-2 col-md-6 text-center site-logo-wrap">
+            <a href="home" class="site-logo">KW</a>
+          </div>
+
+
+          <div class="col-5 col-md-3 text-right menu-burger-wrap">
+            <a href="#" class="site-nav-toggle js-site-nav-toggle"><i></i></a>
+
+          </div>
+        </div>
+       
+      </header> <!-- site-header -->
+      
+      <div class="main-wrap " id="section-home">
+
+        <div class="cover_1 overlay bg-light">
+            <div class="container">
+              <div class="row align-items-center justify-content-center text-center">
+                <div class="col-md-10" data-aos="fade-up">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> <!-- .cover_1 -->
+
+        <div class="section"  data-aos="fade-up">
+          <div class="container">
+            <div class="row section-heading justify-content-center mb-5">
+              <div class="col-md-8 text-center">
+                <h2 class="heading mb-3"><%=prod.name%> Detail</h2>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-5">
+                <img src="data:image/jpg;base64,<%=prod.image%>" width="400" height="400" />
+              </div>
+              <div class="col-md-7">
+                <form action="./add2cart" method="POST" style="color: black;">
+                  <div class="form-group">
+                    <label>Name: </label>
+                    <span><%=prod.name%></span>
+                  </div>
+                  <div class="form-group">
+                    <label>Price: </label>
+                    <span>$<%=prod.price%></span>
+                  </div>
+                  <div class="form-group">
+                    <label>Category: </label>
+                    <span><%=prod.category.name%></span>
+                  </div>
+                  <div class="form-group">
+                    <label>Quantity: </label>
+                    <input type="number" name="txtQuantity" value="1" min="1" max="99" required />
+                  </div>
+                  <input type="hidden" name="txtID" value="<%=prod._id%>" />
+                  <input type="submit" value="ADD TO CART" />
+                </form>
+              </div>        
+          </div>
+        </div>       
+<br/>
+        <footer class="ftco-footer">
+          <div class="container">
+            
+            <div class="row">
+            <div class="col-md-4 mb-5">
+              <div class="footer-widget">
+                <h3 class="mb-4">About Meal</h3>
+                <p>The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen. </p>
+                
+                <p><a href="#" class="btn btn-primary btn-outline-primary">Read More</a></p>
+              </div>
+            </div>
+            <div class="col-md-4 mb-5">
+              <div class="footer-widget">
+                <h3 class="mb-4">Lunch Service</h3>
+                <p>Booking from 12:00pm &mdash; 1:30pm</p>
+                <h3 class="mb-4">Dinner Service</h3>
+                <p>Everyday: <br> Booking from 6:00pm &mdash; 9:00pm</p>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="footer-widget">
+                <h3 class="mb-4">Follow Along</h3>
+                <ul class="list-unstyled social">
+                  <li><a href="#"><span class="fa fa-tripadvisor"></span></a></li>
+                  <li><a href="#"><span class="fa fa-twitter"></span></a></li>
+                  <li><a href="#"><span class="fa fa-facebook"></span></a></li>
+                  <li><a href="#"><span class="fa fa-instagram"></span></a></li>
+                </ul>
+              </div>
+              <div class="footer-widget">
+                <h3 class="mb-4">Newsletter</h3>
+                <form action="#" class="ftco-footer-newsletter">
+                  <div class="form-group">
+                    <button class="button"><span class="fa fa-envelope"></span></button>
+                    <input type="email" class="form-control" placeholder="Enter Email">
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            </div>
+
+            <div class="row pt-5">
+              <div class="col-md-12 text-center">
+                <p>
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart text-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a>
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            </p>
+              </div>
+            </div>
+          </div>
+        </footer>
+      
+    </div>
+
+    <!-- loader -->
+    <div id="loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#ff7a5c"/></svg></div>
+
+    <script src="/public/home-cust/js/jquery-3.2.1.min.js"></script>
+    <script src="/public/home-cust/js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="/public/home-cust/js/popper.min.js"></script>
+    <script src="/public/home-cust/js/bootstrap.min.js"></script>
+    <script src="/public/home-cust/js/owl.carousel.min.js"></script>
+    <script src="/public/home-cust/js/jquery.waypoints.min.js"></script>
+
+    <script src="/public/home-cust/js/bootstrap-datepicker.js"></script>
+    <script src="/public/home-cust/js/jquery.timepicker.min.js"></script>
+    <script src="/public/home-cust/js/jquery.stellar.min.js"></script>
+
+    <script src="/public/home-cust/js/jquery.easing.1.3.js"></script>    
+
+    <script src="/public/home-cust/js/aos.js"></script>
+    
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+
+    <script src="/public/home-cust/js/main.js"></script>
+  </body>
+</html>

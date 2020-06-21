@@ -1,0 +1,161 @@
+<html>
+
+<head>
+  <link href="/public/css/styles.css" type="text/css" rel="stylesheet" />
+  <script>
+    function previewImage(input) {
+      var reader = new FileReader();
+      reader.onload = function (evt) {
+        document.getElementById("imgProduct").src = evt.target.result;
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
+    
+    function details(id, name, price, catID, image) {
+      document.getElementById("txtID").value = id;
+      document.getElementById("txtName").value = name;
+      document.getElementById("txtPrice").value = price;
+      document.getElementById("cmbCategory").value = catID;
+      document.getElementById("imgProduct").src = "data:image/jpg;base64," + image;
+      document.getElementById("btnUpdate").style.display = "inline";
+      document.getElementById("btnDelete").style.display = "inline";
+    }
+  </script>
+</head>
+
+<br/>
+
+<body class="admin">
+  <%- include('./_menu.ejs') %>
+  <div class="float-left">
+    <h2 class="text-center">PRODUCT LIST</h2>
+    <br/>
+    <table class="datatable" border="1">
+      <tr class="datatable">
+        <th>ID</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Creation date</th>
+        <th>Category</th>
+        <th>Image</th>
+      </tr>
+      <%  for (var item of prods) {  %>
+      <tr class="datatable" onclick="details('<%=item._id%>', '<%=item.name%>', '<%=item.price%>', '<%=item.category.id%>', '<%=item.image%>')">
+        <th><%=item._id%></th>
+        <td><%=item.name%></td>
+        <td>$<%=item.price%></td>
+        <td><%=new Date(item.cdate).toLocaleString()%></td>
+        <td><%=item.category.name%></td>
+        <td><img src="data:image/jpg;base64,<%=item.image%>" width="100" height="100" /></td>
+      </tr>
+      <%  } %>
+      <!-- pagination -->
+      <tr>
+        <td colspan="6">
+          <%  for (var index = 1; index <= noPages; index++) {
+                if (index == curPage) { %>
+          | <b><%=index%></b> |
+          <%    } else {  %>
+          | <a href="./listproduct?page=<%=index%>"><%=index%></a> |
+          <%    } } %>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="inline" style="width: 40px"></div>
+  <div class="float-right">
+    <h2 class="text-center">PRODUCT DETAIL</h2>
+    <br/>
+    <form method="POST" enctype="multipart/form-data">
+      <table>
+        <tr>
+          <td>ID</td>
+          <td><input type="text" id="txtID" name="txtID" readonly /></td>
+        </tr>
+        <tr>
+          <td>Name</td>
+          <td><input type="text" id="txtName" name="txtName" required />
+          </td>
+        </tr>
+        <tr>
+          <td>Price</td>
+          <td><input type="number" id="txtPrice" name="txtPrice" min="1" max="999" required />
+          </td>
+        </tr>
+        <tr>
+          <td>Image</td>
+          <td><input type="file" name="fileImage" accept="image/jpeg, image/png, image/gif" onchange="previewImage(this)" /></td>
+        </tr>
+        <tr>
+          <td>Category</td>
+          <td>
+            <select id="cmbCategory" name="cmbCategory">
+              <%  for (var cat of cats) { %>
+              <option value="<%=cat._id%>"><%=cat.name%></option>
+              <%  } %>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            <input type="submit" formaction="./addproduct" value="ADD NEW" />
+            <input type="submit" formaction="./updateproduct" value="UPDATE" id="btnUpdate" style="display: none" />
+            <input type="submit" formaction="./deleteproduct" value="DELETE" id="btnDelete" style="display: none" onclick="return confirm('ARE YOU SURE?')" />
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2"><img id="imgProduct" width="300" height="300" /></td>
+        </tr>
+      </table>
+    </form>
+  </div>
+  <div class="float-clear"></div>
+
+  <br/><br/>
+
+  <footer class="footer-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5">
+                <div class="fs-left">
+                    <div class="logo">
+                        <a href="./index.html">
+                            <img src="/public/admin-template/img/footer-logo.png" alt="">
+                        </a>
+                    </div>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo
+                        viverra maecenas accumsan lacus vel facilisis.</p>
+                </div>
+            </div>
+            <div class="col-lg-6 offset-lg-1">
+                <form action="#" class="subscribe-form">
+                    <h3>Subscribe to our newsletter</h3>
+                    <input type="email" placeholder="Your e-mail">
+                    <button type="submit">Subscribe</button>
+                </form>
+                <div class="social-links">
+                    <a href="#"><i class="fa fa-instagram"></i><span>Instagram</span></a>
+                    <a href="#"><i class="fa fa-pinterest"></i><span>Pinterest</span></a>
+                    <a href="#"><i class="fa fa-facebook"></i><span>Facebook</span></a>
+                    <a href="#"><i class="fa fa-twitter"></i><span>Twitter</span></a>
+                    <a href="#"><i class="fa fa-youtube"></i><span>Youtube</span></a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="copyright-text">
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- Footer Section End -->
+</body>
+
+</html>
